@@ -21,3 +21,7 @@ Route::get('/SeeProducts', function () {
     return view('SeeProducts');
 });
 
+Route::post('/RegisterProduct', [ProductController::class, 'registerProduct'])->name('RegisterProduct');
+
+
+

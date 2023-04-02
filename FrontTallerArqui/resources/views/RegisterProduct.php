@@ -54,26 +54,29 @@
 </head>
 <body>
 	<h1>Registrar Producto</h1>
-	<form action="/registrar_producto" method="post">
-		<label for="nombre">Nombre:</label>
-		<input type="text" id="nombre" name="nombre"><br>
+	<form>
+    @csrf
+    <label for="Id">Id:</label>
+    <input type="number" id="Id" name="Id"><br>
 
-		<label for="descripcion">Descripción:</label>
-		<textarea id="descripcion" name="descripcion"></textarea><br>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre"><br>
 
-		<label for="precio">Precio:</label>
-		<input type="number" id="precio" name="precio"><br>
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion"></textarea><br>
 
-		<label for="stock">Stock:</label>
-		<input type="number" id="stock" name="stock"><br>
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" name="precio"><br>
 
-		<label for="proveedor">Proveedor:</label>
-		<input type="text" id="proveedor" name="proveedor"><br>
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock"><br>
 
-		<input type="submit" value="Registrar Producto">
-		<input type="reset" value="Limpiar">
+    <label for="proveedor">Proveedor:</label>
+    <input type="text" id="proveedor" name="proveedor"><br>
 
-	</form>
+    <input type="submit" value="Registrar Producto">
+    <input type="reset" value="Limpiar">
+</form>
 </body>
 <script>
   const form = document.querySelector('form');
@@ -86,9 +89,8 @@
     xhr.open('POST', 'http://localhost:8081/registerProduct');
     xhr.setRequestHeader('Content-Type', 'application/xml');
 
-    const requestBody = `<?xml version="1.0" encoding="UTF-8"?>
-      <product>
-        <id>3</id>
+    const requestBody = `<product>
+        <id>${form.Id.value}</id>
         <nombre>${form.nombre.value}</nombre>
         <descripcion>${form.descripcion.value}</descripcion>
         <precio>${form.precio.value}</precio>
@@ -98,6 +100,7 @@
 
     // Envía la petición SOAP
     xhr.send(requestBody);
+	xhr.close();
   });
 </script>
 </html>
